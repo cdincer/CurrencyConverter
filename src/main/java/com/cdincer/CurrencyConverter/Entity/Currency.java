@@ -1,5 +1,6 @@
 package com.cdincer.CurrencyConverter.Entity;
 
+import javax.persistence.Entity;
 
 public class Currency {
 

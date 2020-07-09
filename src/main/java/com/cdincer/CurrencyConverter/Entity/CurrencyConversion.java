@@ -7,7 +7,7 @@ import java.util.Date;
 @Entity
 public class CurrencyConversion {
 
-    public CurrencyConversion(long id, String home_currency,String target_currency,long amount) {
+    public CurrencyConversion(long id, String home_currency,String target_currency,double amount) {
         this.id = id;
         this.home_currency = home_currency;
         this.target_currency = target_currency;
@@ -28,7 +28,7 @@ public class CurrencyConversion {
     private String target_currency;
 
     @Column(name="amount")
-    private long amount;
+    private double amount;
 
     @Column(name="timeofday")
     private String  timeofday;
@@ -53,7 +53,7 @@ public class CurrencyConversion {
         this.target_currency = target_currency;
     }
 
-    public long getAmount() {
+    public double getAmount() {
         return amount;
     }
 

@@ -3,6 +3,9 @@ package com.cdincer.CurrencyConverter.Rest;
 
 import com.cdincer.CurrencyConverter.Entity.CurrencyConversion;
 import com.cdincer.CurrencyConverter.Service.CurrencyConversionService;
+
+import org.springframework.boot.json.JsonParser;
+import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -30,7 +33,7 @@ public class CurrencyConversionController {
 
     @GetMapping("/changerate")
     public String ExchangeRate(@RequestParam(value = "home_currency")
-                                       String homecur,@RequestParam(value ="target_currency") String tcur,@RequestParam(value="amount")long amount) {
+                                       String homecur,@RequestParam(value ="target_currency") String tcur,@RequestParam(value="amount")double amount) {
 
         RestTemplateBuilder MyTemplateBuilder = new RestTemplateBuilder();
         if(homecur == null || homecur == "")
@@ -45,11 +48,12 @@ public class CurrencyConversionController {
 
 
         String result = currencyConversionTarget(homecur,tcur);
-
+        result = result.substring(5,15);
+        amount = Double.parseDouble(result) * amount;
         CurrencyConversion mResult = new CurrencyConversion(0,homecur,tcur,amount);
         currencyConversionService.save(mResult);
 
-        return result;
+        return mResult.getId() +" is your transaction ID. Your conversions comes to "+ String.valueOf(amount);
     }
 
 
@@ -86,8 +90,30 @@ public class CurrencyConversionController {
                 entity,
                 String.class);
         String excrater  = response.getBody().toString();
-
+        excrater=JsonBreaker(excrater);
         return excrater;
+    }
+
+
+    public String JsonBreaker(String Unprocessed)
+    {
+
+        String result="";
+        JsonParser springParser = JsonParserFactory.getJsonParser();
+        Map<String, Object> map = springParser.parseMap(Unprocessed);
+
+        String mapArray[] = new String[map.size()];
+
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+
+            if(entry.getKey() == "rates")
+            {
+              return  result=entry.getValue().toString();
+            }
+        }
+
+
+        return "1";
     }
 
 }

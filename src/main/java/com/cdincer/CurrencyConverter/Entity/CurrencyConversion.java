@@ -2,11 +2,19 @@ package com.cdincer.CurrencyConverter.Entity;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-public class Currency {
+public class CurrencyConversion {
+
+    public CurrencyConversion(long id, String home_currency,String target_currency,long amount) {
+        this.id = id;
+        this.home_currency = home_currency;
+        this.target_currency = target_currency;
+        this.amount = amount;
+        setTimeofday();
+
+    }
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -19,39 +27,11 @@ public class Currency {
     @Column(name="target_currency")
     private String target_currency;
 
+    @Column(name="amount")
+    private long amount;
+
     @Column(name="timeofday")
     private String  timeofday;
-
-    @Column(name="result")
-    private String result;
-
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
-
-    public String getTimeofday() {
-        return timeofday;
-    }
-
-    public void setTimeofday() {
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-        Date date = new Date(System.currentTimeMillis());
-        this.timeofday = formatter.format(date);
-    }
-
-
-
-    public Currency(long id, String home_currency,String target_currency,String result) {
-        this.id = id;
-        this.home_currency = home_currency;
-        this.target_currency = target_currency;
-        this.result = result;
-        setTimeofday();
-    }
 
     public long getId() {
         return id;
@@ -72,4 +52,23 @@ public class Currency {
     public void setTarget_currency(String target_currency) {
         this.target_currency = target_currency;
     }
+
+    public long getAmount() {
+        return amount;
+    }
+
+    public void setAmount(long amount) {
+        this.amount = amount;
+    }
+
+    public String getTimeofday() {
+        return timeofday;
+    }
+
+    public void setTimeofday() {
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+        Date date = new Date(System.currentTimeMillis());
+        this.timeofday = formatter.format(date);
+    }
+
 }

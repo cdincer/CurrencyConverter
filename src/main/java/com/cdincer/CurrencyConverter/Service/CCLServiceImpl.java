@@ -34,12 +34,12 @@ public class CCLServiceImpl implements  CCLService
          mItems = cclRepository.findCurrencyByBaseAndTime(home_currency,Time);
         }
         else
-        if(home_currency != "" )
+        if(home_currency != "" && Time =="" )
         {
             mItems=   cclRepository.findCurrencyByBase(home_currency);
         }
         else
-        if (Time != "" )
+        if (Time != ""  && home_currency == "")
         {
             mItems=   cclRepository.findCurrencyByTime(Time);
         }

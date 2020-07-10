@@ -49,6 +49,13 @@ class CurrencyConverterApplicationTests {
 		//See if our database iniated properly and our search works. Check our data.sql to see what we put in there.
 		if (mCCLController.ExchangeRate("USD","").size()  == 0)
 		fail("Not enough results");
+
+
+		if (mCCLController.ExchangeRate("","2020-06-18").size()  <= 1)
+			fail("Not enough results");
+
+		if (mCCLController.ExchangeRate("EUR","2020-06-18").size()  <= 1)
+			fail("Not enough results");
 	}
 
 }

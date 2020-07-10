@@ -29,14 +29,17 @@ public class CCLController {
 
     @GetMapping("/cclisr")
     public List<CurrencyConversion> ExchangeRate(@RequestParam(value = "home_currency")
-                                       String homecur, @RequestParam(value ="target_currency") String tcur) {
+                                       String homecur, @RequestParam(value ="time") String time) {
+
+        if(homecur == "" && time =="")
+        {   //Specialized error catch instead of global one
+            throw new ExchangeNotFoundException("Please enter a currency to search or time frame (yyyy-MM-dd)");
+        }
 
 
-        //Trying LocalDate for later experimentation -- to be erased later.
-        LocalDate newFormat =LocalDate.now();
-        //
 
-        List<CurrencyConversion> myList = mCCLService.findRows(homecur,"1");
+
+        List<CurrencyConversion> myList = mCCLService.findRows(homecur,time);
 
         return myList;
     }

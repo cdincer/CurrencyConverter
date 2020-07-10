@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,8 +27,22 @@ public class CCLServiceImpl implements  CCLService
 
     @Override
     public List<CurrencyConversion> findRows(String home_currency, String Time) {
-     List<CurrencyConversion> mItems=   cclRepository.findCurrencyByBase(home_currency);
+        List<CurrencyConversion> mItems = new ArrayList<CurrencyConversion>() ;
 
+        if((home_currency != "" ) && (Time != "" ))
+        {
+         mItems = cclRepository.findCurrencyByBaseAndTime(home_currency,Time);
+        }
+        else
+        if(home_currency != "" )
+        {
+            mItems=   cclRepository.findCurrencyByBase(home_currency);
+        }
+        else
+        if (Time != "" )
+        {
+            mItems=   cclRepository.findCurrencyByTime(Time);
+        }
      return  mItems;
     }
 

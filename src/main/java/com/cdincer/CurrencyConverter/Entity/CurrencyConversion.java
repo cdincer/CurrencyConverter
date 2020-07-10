@@ -71,7 +71,7 @@ public class CurrencyConversion {
     }
 
     public void setTimeofday() {
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date(System.currentTimeMillis());
         this.timeofday = formatter.format(date);
     }

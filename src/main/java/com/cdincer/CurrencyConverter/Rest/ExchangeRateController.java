@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
-import com.cdincer.CurrencyConverter.Dao.CurrencyRepository;
 import com.cdincer.CurrencyConverter.Entity.Currency;
+import com.cdincer.CurrencyConverter.Exception.ExchangeNotFoundException;
 import com.cdincer.CurrencyConverter.Service.CurrencyService;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;

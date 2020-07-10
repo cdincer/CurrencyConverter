@@ -1,4 +1,4 @@
-package com.cdincer.CurrencyConverter.Rest;
+package com.cdincer.CurrencyConverter.Exception;
 
 public class ExchangeRateErrorResponse {
     private int status;

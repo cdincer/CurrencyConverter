@@ -38,7 +38,7 @@ class CurrencyConverterApplicationTests {
 
 	@Test
 	void CurrencyConversionService(){
-		boolean CheckMessage = mCCController.ExchangeRate("GBP","USD",100).contains(" is your transaction ID. Your conversions comes to ");
+		boolean CheckMessage = mCCController.ExchangeRate("GBP","USD","100").contains(" is your transaction ID. Your conversions comes to ");
 		if(!CheckMessage)
 			fail("Transactions are broken");
 	}

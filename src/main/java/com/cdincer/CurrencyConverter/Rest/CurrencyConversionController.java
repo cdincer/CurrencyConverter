@@ -2,6 +2,7 @@ package com.cdincer.CurrencyConverter.Rest;
 
 
 import com.cdincer.CurrencyConverter.Entity.CurrencyConversion;
+import com.cdincer.CurrencyConverter.Exception.ExchangeNotFoundException;
 import com.cdincer.CurrencyConverter.Service.CurrencyConversionService;
 
 import org.springframework.boot.json.JsonParser;
@@ -34,7 +35,15 @@ public class CurrencyConversionController {
 
     @GetMapping("/changerate")
     public String ExchangeRate(@RequestParam(value = "home_currency")
-                                       String homecur,@RequestParam(value ="target_currency") String tcur,@RequestParam(value="amount")double amount) {
+                                       String homecur,@RequestParam(value ="target_currency") String tcur,@RequestParam(value="amount")String amountS) {
+
+
+        if(amountS == "")
+        {
+            throw new ExchangeNotFoundException("Please enter a valid amount");
+        }
+
+        double amount = Double.parseDouble(amountS);
 
         RestTemplateBuilder MyTemplateBuilder = new RestTemplateBuilder();
         if(homecur == null || homecur == "")
@@ -46,6 +55,8 @@ public class CurrencyConversionController {
         {
             throw new ExchangeNotFoundException("Please enter a target currency");
         }
+
+
 
 
         String result = currencyConversionTarget(homecur,tcur);

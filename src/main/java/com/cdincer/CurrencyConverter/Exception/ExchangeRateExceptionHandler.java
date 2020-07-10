@@ -1,5 +1,6 @@
-package com.cdincer.CurrencyConverter.Rest;
+package com.cdincer.CurrencyConverter.Exception;
 
+import com.cdincer.CurrencyConverter.Exception.ExchangeRateErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

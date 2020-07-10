@@ -20,6 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.HashMap;
 import java.util.Map;
 
+//Main spot where amounts are calculated.
 @RestController
 public class CurrencyConversionController {
 

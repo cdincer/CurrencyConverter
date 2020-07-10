@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+//You just get amounts for entered pairs and default base.
 @RestController
 public class ExchangeRateController {
 

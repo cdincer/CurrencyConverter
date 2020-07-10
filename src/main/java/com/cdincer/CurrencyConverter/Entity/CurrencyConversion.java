@@ -1,6 +1,7 @@
 package com.cdincer.CurrencyConverter.Entity;
 
 import javax.persistence.*;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -15,11 +16,15 @@ public class CurrencyConversion {
         setTimeofday();
 
     }
+    public CurrencyConversion()
+    {
+
+    }
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="id")
-    private final long id;
+    private  long id;
 
     @Column(name="home_currency")
     private String home_currency;

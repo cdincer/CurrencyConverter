@@ -1,4 +1,4 @@
-package com.cdincer.CurrencyConverter.Exception;
+package com.cdincer.currencyconverter.exception;
 
 public class ExchangeNotFoundException extends RuntimeException {
 

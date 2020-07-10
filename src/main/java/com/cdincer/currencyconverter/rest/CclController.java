@@ -1,8 +1,8 @@
-package com.cdincer.CurrencyConverter.Rest;
+package com.cdincer.currencyconverter.rest;
 
-import com.cdincer.CurrencyConverter.Entity.CurrencyConversion;
-import com.cdincer.CurrencyConverter.Exception.ExchangeNotFoundException;
-import com.cdincer.CurrencyConverter.Service.CCLService;
+import com.cdincer.currencyconverter.entity.CurrencyConversion;
+import com.cdincer.currencyconverter.exception.ExchangeNotFoundException;
+import com.cdincer.currencyconverter.service.CCLService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,18 +12,18 @@ import java.util.List;
 
 //CurrencyConversionList Controller
 @RestController
-public class CCLController {
+public class CclController {
 
 
 
     private CCLService mCCLService;
-    public CCLController(CCLService CCLServiceT)
+    public CclController(CCLService cclServiceT)
     {
-        this.mCCLService = CCLServiceT;
+        this.mCCLService = cclServiceT;
     }
 
     @GetMapping("/cclist")
-    public List<CurrencyConversion> ExchangeRate(@RequestParam(value = "home_currency")
+    public List<CurrencyConversion> exchangeRate(@RequestParam(value = "home_currency")
                                        String homecur, @RequestParam(value ="time") String time) {
 
         if(homecur.equals("") && time.equals(""))

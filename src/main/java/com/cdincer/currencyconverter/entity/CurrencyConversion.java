@@ -1,4 +1,4 @@
-package com.cdincer.CurrencyConverter.Entity;
+package com.cdincer.currencyconverter.entity;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
@@ -7,10 +7,10 @@ import java.util.Date;
 @Entity
 public class CurrencyConversion {
 
-    public CurrencyConversion(long id, String home_currency,String target_currency,double amount) {
+    public CurrencyConversion(long id, String homeCurrency, String targetCurrency, double amount) {
         this.id = id;
-        this.home_currency = home_currency;
-        this.target_currency = target_currency;
+        this.homeCurrency = homeCurrency;
+        this.targetCurrency = targetCurrency;
         this.amount = amount;
         setTimeofday();
 
@@ -26,10 +26,10 @@ public class CurrencyConversion {
     private  long id;
 
     @Column(name="home_currency")
-    private String home_currency;
+    private String homeCurrency;
 
     @Column(name="target_currency")
-    private String target_currency;
+    private String targetCurrency;
 
     @Column(name="amount")
     private double amount;
@@ -41,20 +41,20 @@ public class CurrencyConversion {
         return id;
     }
 
-    public String getHome_currency() {
-        return home_currency;
+    public String getHomeCurrency() {
+        return homeCurrency;
     }
 
-    public void setHome_currency(String home_currency) {
-        this.home_currency = home_currency;
+    public void setHomeCurrency(String homeCurrency) {
+        this.homeCurrency = homeCurrency;
     }
 
-    public String getTarget_currency() {
-        return target_currency;
+    public String getTargetCurrency() {
+        return targetCurrency;
     }
 
-    public void setTarget_currency(String target_currency) {
-        this.target_currency = target_currency;
+    public void setTargetCurrency(String targetCurrency) {
+        this.targetCurrency = targetCurrency;
     }
 
     public double getAmount() {

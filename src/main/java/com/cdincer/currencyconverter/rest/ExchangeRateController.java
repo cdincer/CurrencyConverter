@@ -1,11 +1,11 @@
-package com.cdincer.CurrencyConverter.Rest;
+package com.cdincer.currencyconverter.rest;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.cdincer.CurrencyConverter.Entity.Currency;
-import com.cdincer.CurrencyConverter.Exception.ExchangeNotFoundException;
-import com.cdincer.CurrencyConverter.Service.CurrencyService;
+import com.cdincer.currencyconverter.entity.Currency;
+import com.cdincer.currencyconverter.exception.ExchangeNotFoundException;
+import com.cdincer.currencyconverter.service.CurrencyService;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -29,8 +29,8 @@ public class ExchangeRateController {
     }
 
     @GetMapping("/exrate")
-    public String ExchangeRate(@RequestParam(value = "home_currency")
-                                          String homecur,@RequestParam(value ="target_currency") String tcur) {
+    public String exchangeRate(@RequestParam(value = "home_currency")
+                                          String homecur, @RequestParam(value ="target_currency") String tcur) {
 
         if(homecur == null || homecur.equals(""))
         {

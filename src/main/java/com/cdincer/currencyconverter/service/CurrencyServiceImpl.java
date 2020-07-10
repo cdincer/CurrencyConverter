@@ -1,7 +1,7 @@
-package com.cdincer.CurrencyConverter.Service;
+package com.cdincer.currencyconverter.service;
 
-import com.cdincer.CurrencyConverter.Dao.CurrencyRepository;
-import com.cdincer.CurrencyConverter.Entity.Currency;
+import com.cdincer.currencyconverter.dao.CurrencyRepository;
+import com.cdincer.currencyconverter.entity.Currency;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

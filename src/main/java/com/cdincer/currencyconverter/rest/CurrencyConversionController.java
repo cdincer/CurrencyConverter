@@ -1,9 +1,9 @@
-package com.cdincer.CurrencyConverter.Rest;
+package com.cdincer.currencyconverter.rest;
 
 
-import com.cdincer.CurrencyConverter.Entity.CurrencyConversion;
-import com.cdincer.CurrencyConverter.Exception.ExchangeNotFoundException;
-import com.cdincer.CurrencyConverter.Service.CurrencyConversionService;
+import com.cdincer.currencyconverter.entity.CurrencyConversion;
+import com.cdincer.currencyconverter.exception.ExchangeNotFoundException;
+import com.cdincer.currencyconverter.service.CurrencyConversionService;
 
 import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
@@ -34,8 +34,8 @@ public class CurrencyConversionController {
 
 
     @GetMapping("/changerate")
-    public String ExchangeRate(@RequestParam(value = "home_currency")
-                                       String homecur,@RequestParam(value ="target_currency") String tcur,@RequestParam(value="amount")String amountS) {
+    public String exchangeRate(@RequestParam(value = "home_currency")
+                                       String homecur, @RequestParam(value ="target_currency") String tcur, @RequestParam(value="amount")String amountS) {
 
 
         if(amountS.equals(""))
@@ -101,17 +101,17 @@ public class CurrencyConversionController {
                 entity,
                 String.class);
         String excrater  = response.getBody();
-        excrater=JsonBreaker(excrater);
+        excrater= jsonBreaker(excrater);
         return excrater;
     }
 
 
-    public String JsonBreaker(String Unprocessed)
+    public String jsonBreaker(String unprocessed)
     {
 
         String result="";
         JsonParser springParser = JsonParserFactory.getJsonParser();
-        Map<String, Object> map = springParser.parseMap(Unprocessed);
+        Map<String, Object> map = springParser.parseMap(unprocessed);
 
 
         for (Map.Entry<String, Object> entry : map.entrySet()) {

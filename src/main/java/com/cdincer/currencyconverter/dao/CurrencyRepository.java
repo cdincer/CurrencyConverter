@@ -1,6 +1,6 @@
-package com.cdincer.CurrencyConverter.Dao;
+package com.cdincer.currencyconverter.dao;
 
-import com.cdincer.CurrencyConverter.Entity.Currency;
+import com.cdincer.currencyconverter.entity.Currency;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

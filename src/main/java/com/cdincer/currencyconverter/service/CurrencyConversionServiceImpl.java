@@ -1,7 +1,7 @@
-package com.cdincer.CurrencyConverter.Service;
+package com.cdincer.currencyconverter.service;
 
-import com.cdincer.CurrencyConverter.Dao.CurrencyConversionRepository;
-import com.cdincer.CurrencyConverter.Entity.CurrencyConversion;
+import com.cdincer.currencyconverter.dao.CurrencyConversionRepository;
+import com.cdincer.currencyconverter.entity.CurrencyConversion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +22,8 @@ public class CurrencyConversionServiceImpl implements CurrencyConversionService{
     public String save(CurrencyConversion theCurrencyConversion) {
         currencyConversionRepository.save(theCurrencyConversion);
         long transactionId = theCurrencyConversion.getId();
-        String Stamp = theCurrencyConversion.getTimeofday();
+        String stamp = theCurrencyConversion.getTimeofday();
 
-        return String.valueOf(transactionId) +" "+Stamp;
+        return transactionId +" "+stamp;
     }
 }

@@ -38,20 +38,19 @@ public class CurrencyConversionController {
                                        String homecur,@RequestParam(value ="target_currency") String tcur,@RequestParam(value="amount")String amountS) {
 
 
-        if(amountS == "")
+        if(amountS.equals(""))
         {
             throw new ExchangeNotFoundException("Please enter a valid amount");
         }
 
         double amount = Double.parseDouble(amountS);
 
-        RestTemplateBuilder MyTemplateBuilder = new RestTemplateBuilder();
-        if(homecur == null || homecur == "")
+        if(homecur == null || homecur.equals("") )
         {   //Specialized error catch instead of global one
             throw new ExchangeNotFoundException("Please enter a base currency");
         }
 
-        if(tcur == null || tcur == "")
+        if(tcur == null || tcur.equals(""))
         {
             throw new ExchangeNotFoundException("Please enter a target currency");
         }
@@ -65,7 +64,7 @@ public class CurrencyConversionController {
         CurrencyConversion mResult = new CurrencyConversion(0,homecur,tcur,amount);
         currencyConversionService.save(mResult);
 
-        return mResult.getId() +" is your transaction ID. Your conversions comes to "+ String.valueOf(amount);
+        return mResult.getId() +" is your transaction ID. Your conversions comes to "+ amount;
     }
 
 
@@ -85,7 +84,7 @@ public class CurrencyConversionController {
         /*
         * "https://api.ratesapi.io/api/latest?base=USD&symbols=GBP"
         * */
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("base",foundation);
         params.put("symbols", destination);
         String url="https://api.ratesapi.io/api/latest";
@@ -101,7 +100,7 @@ public class CurrencyConversionController {
                 HttpMethod.GET,
                 entity,
                 String.class);
-        String excrater  = response.getBody().toString();
+        String excrater  = response.getBody();
         excrater=JsonBreaker(excrater);
         return excrater;
     }
@@ -114,13 +113,13 @@ public class CurrencyConversionController {
         JsonParser springParser = JsonParserFactory.getJsonParser();
         Map<String, Object> map = springParser.parseMap(Unprocessed);
 
-        String mapArray[] = new String[map.size()];
 
         for (Map.Entry<String, Object> entry : map.entrySet()) {
 
-            if(entry.getKey() == "rates")
+            if(entry.getKey().equals("rates"))
             {
-              return  result=entry.getValue().toString();
+                result=entry.getValue().toString();
+              return result ;
             }
         }
 

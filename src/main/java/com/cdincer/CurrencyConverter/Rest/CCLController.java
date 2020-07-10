@@ -26,16 +26,12 @@ public class CCLController {
     public List<CurrencyConversion> ExchangeRate(@RequestParam(value = "home_currency")
                                        String homecur, @RequestParam(value ="time") String time) {
 
-        if(homecur == "" && time =="")
+        if(homecur.equals("") && time.equals(""))
         {   //Specialized error catch instead of global one
             throw new ExchangeNotFoundException("Please enter a currency to search or time frame (yyyy-MM-dd)");
         }
 
 
-
-
-        List<CurrencyConversion> myList = mCCLService.findRows(homecur,time);
-
-        return myList;
+        return  mCCLService.findRows(homecur,time);
     }
 }

@@ -29,17 +29,17 @@ public class CCLServiceImpl implements  CCLService
     public List<CurrencyConversion> findRows(String home_currency, String Time) {
         List<CurrencyConversion> mItems = new ArrayList<CurrencyConversion>() ;
 
-        if((home_currency != "" ) && (Time != "" ))
+        if((!home_currency.equals("") ) && (!Time.equals("") ))
         {
          mItems = cclRepository.findCurrencyByBaseAndTime(home_currency,Time);
         }
         else
-        if(home_currency != "" && Time =="" )
+        if(!home_currency.equals("") && Time.equals("") )
         {
             mItems=   cclRepository.findCurrencyByBase(home_currency);
         }
         else
-        if (Time != ""  && home_currency == "")
+        if (!Time.equals("")  && home_currency.equals(""))
         {
             mItems=   cclRepository.findCurrencyByTime(Time);
         }

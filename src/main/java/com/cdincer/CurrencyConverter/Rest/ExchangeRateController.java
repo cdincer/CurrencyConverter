@@ -2,7 +2,6 @@ package com.cdincer.CurrencyConverter.Rest;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
 
 import com.cdincer.CurrencyConverter.Entity.Currency;
 import com.cdincer.CurrencyConverter.Exception.ExchangeNotFoundException;
@@ -22,7 +21,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 public class ExchangeRateController {
 
-    private final AtomicLong counter = new AtomicLong();
 
     private CurrencyService currencyService;
     public ExchangeRateController(CurrencyService mCurrencyService)
@@ -34,13 +32,12 @@ public class ExchangeRateController {
     public String ExchangeRate(@RequestParam(value = "home_currency")
                                           String homecur,@RequestParam(value ="target_currency") String tcur) {
 
-        RestTemplateBuilder MyTemplateBuilder = new RestTemplateBuilder();
-        if(homecur == null || homecur == "")
+        if(homecur == null || homecur.equals(""))
         {
             throw new ExchangeNotFoundException("Please enter a base currency");
         }
 
-        if(tcur == null || tcur == "")
+        if(tcur == null || tcur.equals(""))
         {
             throw new ExchangeNotFoundException("Please enter a target currency");
         }
@@ -67,7 +64,7 @@ public class ExchangeRateController {
         headers.set("Accept", "application/json");
         String msisdn=curr1+","+curr2;
 
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("symbols", msisdn);
         String url="https://api.ratesapi.io/api/latest";
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -82,9 +79,8 @@ public class ExchangeRateController {
                 HttpMethod.GET,
                 entity,
                 String.class);
-        String excrater  = response.getBody().toString();
 
-        return excrater;
+        return  response.getBody();
     }
 
 }
